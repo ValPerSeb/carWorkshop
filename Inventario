@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    int n = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese cuantos objetos va a guardar en su vector"));
+        Metodos mmetodos[] = new Metodos[n];
+        for (int i = 0; i < n; i++) {
+            Metodos metodos = new Metodos();            
+            metodos.setName(JOptionPane.showInputDialog(null, "Ingrese el nombre"));
+            metodos.setId(Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el Id")));
+            metodos.setCantidad(Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese la cantidad")));
+            metodos.setCosto(Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el costo")));
+            mmetodos[i] = metodos;
+            System.out.println("El nombre es : "+mmetodos[i].Name()+"\ny el Id es: "+mmetodos[i].getId()+"\nyla cantidad es: "+mmetodos[i].getCantidad()+"\ny el costo es:"+mmetodos[i].getCosto());
+            System.out.println();
+        }
+    } 
+}
+public class Metodos {
+    private String Name;/*primera variable creada con encasulamiento de datos*/
+    private int Id;
+    private int Costo;
+    private int Cantidad;
+    public Metodos() {/*Cuando va void aquí es porque no retorna nada*/
+    }
+    public String Name(){
+        return Name;
+    }
+    public void setName(String Name){
+        this.Name = Name;
+    }
+    public int getId(){
+        return Id;
+    }
+    public void setId(int Id){
+        this.Id = Id;
+    }
+       public int getCosto(){
+        return Costo;
+    }
+    public void setCosto(int costo){
+        this.Costo = costo;
+    }
+       public int getCantidad(){
+        return Cantidad;
+    }
+    public void setCantidad(int cantidad){
+        this.Cantidad = cantidad;
+    }
+}
