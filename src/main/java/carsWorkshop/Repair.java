@@ -1,71 +1,43 @@
 package carsWorkshop;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class Repair {
     String licensePlate;
     String status;
-   
-package com.mycompany.placa;
- 
-import java.util.Arrays;
-
-import javax.swing.JOptionPane;
- 
-
-public class Placa {
- 
-    public static void main(String[] args) {
-
-      String  placa1 = JOptionPane.showInputDialog(null, "Ingrese la placa del vehiculo");
-
-      String placas[]={"asd","f","g"};
-
-      String []vectornuevo = new String[placas.length];
-
-      vectornuevo=placa(placa1,placas);
-
-        System.out.println(Arrays.toString(vectornuevo));
-
-
-
-    }
-
-    public static String[] placa(String x,String[]v){
-
-         String menu="  1-listo para entraga"+"\n"
-
-                 + "    2-En proceso de reparacion"+"\n"
-
-                 + "    3-Pendiente de reparacion";
-
-         String opcion;
-
-         String []h=new String[v.length];
-
-
-        for (int i = 0; i < v.length; i++) {
-
-           if(v[i]==x){
-
-               System.out.println("la el vehiculo se encuentra en la lista de hiculos");
-
-               opcion=JOptionPane.showInputDialog(menu);
-
-               h[i]=x+opcion;   
-
-           }
-
-           else{
-
-               JOptionPane.showConfirmDialog(null, "la placa no concuerda con ningun vehiculo");
-
-           }
-
+    ArrayList<Inventory> inventory;
+    
+    public Repair(String licensePlate, String status){
+        this.licensePlate = licensePlate;
+        if(!"ready".equals(status) && !"InProgress".equals(status) && !"pending".equals(status)){
+            System.out.println("El estado ingresado no es valido");
+        }else{
+            this.status = status;
         }
-
-        return h;
-
     }
+    
+    public void statusChange(String newStatus){
+        if(!"ready".equals(newStatus) && !"InProgress".equals(newStatus) && !"pending".equals(newStatus)){
+            System.out.println("El estado ingresado no es valido");
+        }else{
+            this.status = newStatus;
+        }
+    }
+    
+    public void registerInventory(){
+        int itemId = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del item: "));
+        String itemName = JOptionPane.showInputDialog("Ingrese el nombre del item: ");
+        double unitPrice = Float.parseFloat(JOptionPane.showInputDialog("Ingrese el valor del item: "));
+        int quantity = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad del item: "));
 
-}
-
+        Inventory item = new Inventory(itemId, itemName, unitPrice, quantity);
+        this.inventory.add(item);
+    }
+    
+    public void showInventory(){
+        for(Inventory item : this.inventory){
+            item.showItemDetails();
+        }
+    }
 }
