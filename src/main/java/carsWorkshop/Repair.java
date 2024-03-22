@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 public class Repair {
     String licensePlate;
     String status;
-    ArrayList<Inventory> inventory;
+    ArrayList<Inventory> inventory = new ArrayList<>();
     
     public Repair(String licensePlate, String status){
         this.licensePlate = licensePlate;

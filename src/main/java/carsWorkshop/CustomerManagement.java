@@ -2,9 +2,9 @@ package carsWorkshop;
 import java.util.ArrayList;
         
 public class CustomerManagement {
-    ArrayList<Customer> activeCustomers;
-    ArrayList<Customer> inProgressCustomers;
-    ArrayList<Customer> readyCustomers;
+    ArrayList<Customer> activeCustomers = new ArrayList<>();
+    ArrayList<Customer> inProgressCustomers = new ArrayList<>();
+    ArrayList<Customer> readyCustomers = new ArrayList<>();
     
     /*Métodos de activeCustomers*/
     public void RegisterCustomer(Customer newCustomer){
