@@ -20,13 +20,30 @@ public class CarsWorkshop {
         AppointmentManagement apptMgmt = new AppointmentManagement(availableDates);
         
         System.out.println("**Registro de Nuevo Cliente**");
-        int id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el documento de identidad del cliente: "));
+        long id = Long.parseLong(JOptionPane.showInputDialog("Ingrese el documento de identidad del cliente: "));
         String name = JOptionPane.showInputDialog("Ingrese el nombre del cliente: ");
         String lastName = JOptionPane.showInputDialog("Ingrese el apellido del cliente: ");
         String address = JOptionPane.showInputDialog("Ingrese la dirección del cliente: ");
-        int phone = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el teléfono del cliente: "));
+        long phone = Long.parseLong(JOptionPane.showInputDialog("Ingrese el teléfono del cliente: "));
         
         Customer newCustomer = new Customer(id, name, lastName, address, phone);
+        //Inicio validaciones para evitar campos vacios o con error.
+        if(newCustomer.id == 0){
+            newCustomer.id = Long.parseLong(JOptionPane.showInputDialog("Ingrese el documento de identidad del cliente: "));
+        }
+        if(newCustomer.name == null){
+            newCustomer.name = JOptionPane.showInputDialog("Ingrese el nombre del cliente: ");
+        }
+        if(newCustomer.lastName == null){
+            newCustomer.lastName = JOptionPane.showInputDialog("Ingrese el apellido del cliente: ");
+        }
+        if(newCustomer.address == null){
+            newCustomer.address = JOptionPane.showInputDialog("Ingrese la dirección del cliente: ");
+        }
+        if(newCustomer.phone == 0){
+            newCustomer.phone = Long.parseLong(JOptionPane.showInputDialog("Ingrese el teléfono del cliente: "));
+        }
+        //Fin validaciones para evitar campos vacios o con error.
         customerMgmt.RegisterCustomer(newCustomer);
         
         System.out.println("**Registro de Nuevo Vehiculo**");

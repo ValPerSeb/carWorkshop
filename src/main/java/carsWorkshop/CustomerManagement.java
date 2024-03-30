@@ -14,7 +14,7 @@ public class CustomerManagement {
     public void PrintActiveCustomers(){
         System.out.println("Los siguientes clientes se encuentran activos: ");
         for(Customer customer : this.activeCustomers){
-            System.out.println(" > " + customer.name);
+            System.out.println(" >Nombre: " + customer.name + " " + customer.lastName + "Documento: " + customer.id + "Telefono: " + customer.phone);
         }
     }
     
@@ -29,7 +29,7 @@ public class CustomerManagement {
     public void PrintInProgressCustomers(){
         System.out.println("Los siguientes clientes se encuentran en reparación o mantenimiento: ");
         for(Customer customer : this.inProgressCustomers){
-            System.out.println(" > " + customer.name);
+            System.out.println(" >Nombre: " + customer.name + " " + customer.lastName + "Documento: " + customer.id + "Telefono: " + customer.phone);
         }
     }
     
@@ -45,7 +45,7 @@ public class CustomerManagement {
     public void PrintReadyCustomers(){
         System.out.println("Los siguientes clientes se encuentran listos: ");
         for(Customer customer : this.readyCustomers){
-            System.out.println(" > " + customer.name);
+            System.out.println(" >Nombre: " + customer.name + " " + customer.lastName + "Documento: " + customer.id + "Telefono: " + customer.phone);
         }
     }
 }

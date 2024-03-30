@@ -7,15 +7,15 @@ import java.util.Arrays;
 public class Appointment {
     int consecutiveId;
     LocalDateTime date;
-    int customerId;
+    long customerId; //Se utiliza long debido a la cantidad de caracteres.
     String vehicleLicense;
     String type;
     String status;
-    Repair repair;
-    String formattedDate;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    Repair repair; //al crear nueva cita, se crea un objeto de la clase repair en status pending.
+    String formattedDate; //variable adicional a date, guarda formato string de la fecha sin hora.
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //Tipo de formato para guardar la fecha en formattedDate.
     
-    public Appointment(int consecutiveId, LocalDateTime date, int customerId, String vehicleLicense, String type){
+    public Appointment(int consecutiveId, LocalDateTime date, long customerId, String vehicleLicense, String type){
         String newConsecutiveId = String.valueOf(consecutiveId);
         if(newConsecutiveId.length() > 6){
             System.out.println("El consecutivo no puede ser mayor a 6 dígitos");
@@ -36,7 +36,7 @@ public class Appointment {
         
         if(day == 6 || day == 7){
             System.out.println("El taller no acepta citas fines de semana");
-        }else if(Arrays.asList(holidays).contains(formatDate)){
+        }else if(Arrays.asList(holidays).contains(formatDate)){//convierto el vector holidays a un arraylist para usar contains.
             System.out.println("El taller no acepta citas en días festivos");
         }else{
             this.date = date;
@@ -49,7 +49,7 @@ public class Appointment {
         this.repair = new Repair(this.vehicleLicense, "pending");
     }
     
-    public void cancelAppointment(){
+    public void cancelAppointment(){//Metodo para la cancelación de citas.
         LocalDateTime currentDate = LocalDateTime.now();
         String formattedCurrentDate = currentDate.format(formatter);
         if(formattedCurrentDate.equals(this.formattedDate)){
