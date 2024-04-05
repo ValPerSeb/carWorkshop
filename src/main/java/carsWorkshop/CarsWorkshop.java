@@ -56,46 +56,38 @@ public class CarsWorkshop {
         //Fin validaciones para evitar campos vacios o con error.
         customerMgmt.RegisterCustomer(newCustomer);
         
-        System.out.println("**Registro de Nuevo Vehiculo**");
-        String licensePlate = JOptionPane.showInputDialog("Ingrese la placa del vehiculo: ");
+        System.out.println("**Registro de Nuevo Vehículo**");
+        String licensePlate = JOptionPane.showInputDialog("Ingrese la placa del vehículo: ");
         if(licensePlate.length()>6){
             do{
-                licensePlate = JOptionPane.showInputDialog("Recuerda que placa debe ser menor a 6 caracteres,  Ingrese la placa del vehiculo: ");
+                licensePlate = JOptionPane.showInputDialog("Recuerda que placa debe ser menor a 6 caracteres, ingrese la placa del vehículo: ");
             }while(licensePlate.length()>6);
         }
         if(licensePlate.length()<=0){
             do{
-                licensePlate = JOptionPane.showInputDialog("No has puesto ninguna placa,Ingrese la placa del vehiculo: "); 
+                licensePlate = JOptionPane.showInputDialog("No has puesto ninguna placa, ingrese la placa del vehículo: "); 
             }while(licensePlate.length()<=0);
         }
         
-        String brand = JOptionPane.showInputDialog("Ingrese la marca del vehiculo: ");
+        String brand = JOptionPane.showInputDialog("Ingrese la marca del vehículo: ");
         if (brand.length()<=0){
             do{
-                brand = JOptionPane.showInputDialog("No has puesto ninguna marca, Ingrese la marca del vehiculo: ");
+                brand = JOptionPane.showInputDialog("No has puesto ninguna marca, ingrese la marca del vehículo: ");
             }while(brand.length()<=0);
         }
-        int model = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el modelo del vehiculo: "));
+        int model = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el modelo del vehículo: "));
         if((String.valueOf(model).length())<=0){
             String vali="";
             do{
-                model = Integer.parseInt(JOptionPane.showInputDialog("No has puesto modelo ,Ingrese el modelo del vehiculo: "));
+                model = Integer.parseInt(JOptionPane.showInputDialog("No has puesto modelo, ingrese el modelo del vehículo: "));
                 vali=String.valueOf(model);
             }while(vali.length()>=0);
         }
-        double km = Float.parseFloat(JOptionPane.showInputDialog("Ingrese el kilometraje del vehiculo: "));
-        String category = JOptionPane.showInputDialog("Ingrese cual es la categoria del vehiculo:"
-                   + "Sedan"
-                   + "Camioneta"
-                   + "Pick up"
-                   + "SUV");
+        double km = Float.parseFloat(JOptionPane.showInputDialog("Ingrese el kilometraje del vehículo: "));
+        String category = JOptionPane.showInputDialog("Ingrese cual es la categoría del vehículo: \nSedan \nCamioneta \nPick up \nSUV");
         if(category.length()<=0){
             do{
-                category = JOptionPane.showInputDialog("Ingrese cual es la categoria del vehiculo:"
-                   + "Sedan"
-                   + "Camioneta"
-                   + "Pick up"
-                   + "SUV");
+                category = JOptionPane.showInputDialog("Ingrese cual es la categoría del vehículo: \nSedan \nCamioneta \nPick up \nSUV");
             }while(category.length()<=0);
         }
         
@@ -103,41 +95,34 @@ public class CarsWorkshop {
         
         System.out.println("**Registro de Nueva Cita**");
         LocalDateTime newDate = requestDate();
-        String type = JOptionPane.showInputDialog("Ingrese cual es el tipo de la cita:"
-                   + "reparación"
-                   + "mantenimiento");
+        String type = JOptionPane.showInputDialog("Ingrese cual es el tipo de la cita: \nreparación \nmantenimiento");
         
         int consecutiveId = getConsecutiveId(apptMgmt.scheduledAppt);
         
         Appointment newAppointment = new Appointment(consecutiveId, newDate, newCustomer.id, newVehicle.licensePlate, type);
         
         apptMgmt.scheduleAppointment(newAppointment);
-        
-      
-        
-        int cant= Integer.parseInt(JOptionPane.showInputDialog("cuantos respuestos va a agregar"));
+         
+        int cant= Integer.parseInt(JOptionPane.showInputDialog("¿Cuántos respuestos va a agregar?"));
         Inventory SpareParts[] = new Inventory[cant];
     
         for (int i = 0; i < cant; i++) {
-            int itemId=Integer.parseInt(JOptionPane.showInputDialog("ingrese el id"));
-            String itemName=JOptionPane.showInputDialog("ingrese el nombre del repuesto");
-            double unitPrice=Double.parseDouble(JOptionPane.showInputDialog("ingrese el precio de la unidad"));
-            int quantity=Integer.parseInt(JOptionPane.showInputDialog("ingrese la cantidad"));
+            int itemId=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id"));
+            String itemName=JOptionPane.showInputDialog("Ingrese el nombre del repuesto");
+            double unitPrice=Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio de la unidad"));
+            int quantity=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad"));
                 
                  SpareParts[i]=new Inventory(itemId,itemName,unitPrice,quantity);
-                 
-
         }
+        
         for (int i = 0; i < SpareParts.length; i++) {
             System.out.println("***********************");
-            System.out.println("el id del elemento es :" + SpareParts[i].itemId);
-            System.out.println("el nombre del elemento es :" + SpareParts[i].itemName);
-            System.out.println("el Precio unitario del elemento es :" + SpareParts[i].unitPrice);
-            System.out.println("la cantidad del elemento es :" + SpareParts[i].quantity);
+            System.out.println("El id del elemento es: " + SpareParts[i].itemId);
+            System.out.println("El nombre del elemento es: " + SpareParts[i].itemName);
+            System.out.println("El Precio unitario del elemento es: " + SpareParts[i].unitPrice);
+            System.out.println("La cantidad del elemento es: " + SpareParts[i].quantity);
             System.out.println("***********************");
-        }
-        
-        
+        }  
     }
     
     public static LocalDateTime requestDate(){
@@ -160,7 +145,5 @@ public class CarsWorkshop {
         }
         
         return consecutiveId;
-    }
-    
-    
+    }   
 }
