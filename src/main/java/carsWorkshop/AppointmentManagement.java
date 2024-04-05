@@ -6,16 +6,16 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class AppointmentManagement {
-    ArrayList<LocalDateTime> availableAppt = new ArrayList<>();
-    ArrayList<Appointment> scheduledAppt = new ArrayList<>();
-    DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("hh:mm");
+    ArrayList<LocalDateTime> availableAppt = new ArrayList<>(); //citas disponibles.
+    ArrayList<Appointment> scheduledAppt = new ArrayList<>(); //citas programadas.
+    DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //Formatear fecha a patrón.
+    DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("hh:mm"); //Formatear hora a patrón.
 
     public AppointmentManagement(ArrayList<LocalDateTime> availableAppt) {
         this.availableAppt = availableAppt;
     }
     
-    public void showAvailableAppt(){
+    public void showAvailableAppt(){ //Mostrar citas disponibles.
         System.out.println("*** Citas disponibles ***");
         for(LocalDateTime appt : availableAppt){
             System.out.println("******");
@@ -25,7 +25,7 @@ public class AppointmentManagement {
         }
     }
     
-    public void scheduleAppointment(Appointment newAppointment){
+    public void scheduleAppointment(Appointment newAppointment){//Programar citas.
         LocalDate currentDate = LocalDate.now();
         int currentDateAppointments = 0;
         ArrayList<Appointment> customerAppointments = new ArrayList<>();
