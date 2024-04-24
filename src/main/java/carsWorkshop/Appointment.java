@@ -5,15 +5,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 public class Appointment {
-    int consecutiveId;
-    LocalDateTime date;
-    long customerId; //Se utiliza long debido a la cantidad de caracteres.
-    String vehicleLicense;
-    String type;
-    String status;
-    Repair repair; //al crear nueva cita, se crea un objeto de la clase repair en status pending.
-    String formattedDate; //variable adicional a date, guarda formato string de la fecha sin hora.
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //Tipo de formato para guardar la fecha en formattedDate.
+    private int consecutiveId;
+    private LocalDateTime date;
+    private long customerId; //Se utiliza long debido a la cantidad de caracteres.
+    private String vehicleLicense;
+    private String type;
+    private String status;
+    private Repair repair; //al crear nueva cita, se crea un objeto de la clase repair en status pending.
+    private String formattedDate; //variable adicional a date, guarda formato string de la fecha sin hora.
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //Tipo de formato para guardar la fecha en formattedDate.
     
     public Appointment(int consecutiveId, LocalDateTime date, long customerId, String vehicleLicense, String type){
         String newConsecutiveId = String.valueOf(consecutiveId);
@@ -47,6 +47,78 @@ public class Appointment {
         this.vehicleLicense = vehicleLicense;
         this.status = "Active";
         this.repair = new Repair(this.vehicleLicense, "pending");
+    }
+
+    public int getConsecutiveId() {
+        return consecutiveId;
+    }
+
+    public void setConsecutiveId(int consecutiveId) {
+        this.consecutiveId = consecutiveId;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getVehicleLicense() {
+        return vehicleLicense;
+    }
+
+    public void setVehicleLicense(String vehicleLicense) {
+        this.vehicleLicense = vehicleLicense;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Repair getRepair() {
+        return repair;
+    }
+
+    public void setRepair(Repair repair) {
+        this.repair = repair;
+    }
+
+    public String getFormattedDate() {
+        return formattedDate;
+    }
+
+    public void setFormattedDate(String formattedDate) {
+        this.formattedDate = formattedDate;
+    }
+
+    public DateTimeFormatter getFormatter() {
+        return formatter;
+    }
+
+    public void setFormatter(DateTimeFormatter formatter) {
+        this.formatter = formatter;
     }
     
     public void cancelAppointment(){//Metodo para la cancelación de citas.
