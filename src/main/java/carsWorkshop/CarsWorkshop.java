@@ -28,29 +28,29 @@ public class CarsWorkshop {
         
         Customer newCustomer = new Customer(id, name, lastName, address, phone);
         //Inicio validaciones para evitar campos vacios o con error.
-        if(newCustomer.id == 0){
+        if(newCustomer.getId()== 0){
             String vali="123456789012";
             do{
                 System.out.println("El id no puede ser mayor a 11 dígitos");
-                newCustomer.id = Long.parseLong(JOptionPane.showInputDialog("Ingrese el documento de identidad del cliente: "));
-                vali=String.valueOf(newCustomer.id);
+                newCustomer.setId(Long.parseLong(JOptionPane.showInputDialog("Ingrese el documento de identidad del cliente: ")));
+                vali=String.valueOf(newCustomer.getId());
             }while(vali.length()>11);
         }
-        if(newCustomer.name == null){
-            newCustomer.name = JOptionPane.showInputDialog("Ingrese el nombre del cliente: ");
+        if(newCustomer.getName() == null){
+            newCustomer.setName(JOptionPane.showInputDialog("Ingrese el nombre del cliente: "));
         }
-        if(newCustomer.lastName == null){
-            newCustomer.lastName = JOptionPane.showInputDialog("Ingrese el apellido del cliente: ");
+        if(newCustomer.getLastName() == null){
+            newCustomer.setLastName(JOptionPane.showInputDialog("Ingrese el apellido del cliente: "));
         }
-        if(newCustomer.address == null){
-            newCustomer.address = JOptionPane.showInputDialog("Ingrese la dirección del cliente: ");
+        if(newCustomer.getAddress() == null){
+            newCustomer.setAddress(JOptionPane.showInputDialog("Ingrese la dirección del cliente: "));
         }
-        if(newCustomer.phone == 0){
+        if(newCustomer.getPhone() == 0){
             String vali="123456789012";
             do{
                 System.out.println("El id no puede ser mayor a 11 dígitos");
-                newCustomer.phone = Long.parseLong(JOptionPane.showInputDialog("Ingrese el documento de identidad del cliente: "));
-                vali=String.valueOf(newCustomer.phone);
+                newCustomer.setPhone(Long.parseLong(JOptionPane.showInputDialog("Ingrese el documento de identidad del cliente: "))); 
+                vali=String.valueOf(newCustomer.getPhone());
             }while(vali.length()>11);
         }
         //Fin validaciones para evitar campos vacios o con error.
@@ -84,12 +84,24 @@ public class CarsWorkshop {
             }while(vali.length()>=0);
         }
         double km = Float.parseFloat(JOptionPane.showInputDialog("Ingrese el kilometraje del vehículo: "));
-        String category = JOptionPane.showInputDialog("Ingrese cual es la categoría del vehículo: \nSedan \nCamioneta \nPick up \nSUV");
-        if(category.length()<=0){
-            do{
-                category = JOptionPane.showInputDialog("Ingrese cual es la categoría del vehículo: \nSedan \nCamioneta \nPick up \nSUV");
-            }while(category.length()<=0);
-        }
+        String category = JOptionPane.showInputDialog("Ingrese la categoría del vehículo: \nSedan \nCamioneta \nPick up \nSUV");
+        
+if (category.length() <= 0) {
+    do {
+        category = JOptionPane.showInputDialog("Ingrese la categoría del vehículo: \nSedan \nCamioneta \nPick up \nSUV");
+    } while (category.length() <= 0);
+}
+        if (category.equalsIgnoreCase("Sedan")) {
+             JOptionPane.showMessageDialog(null, "Has seleccionado la categoría Sedan");
+                } else if (category.equalsIgnoreCase("Camioneta")) {
+                     JOptionPane.showMessageDialog(null, "Has seleccionado la categoría Camioneta");
+                    } else if (category.equalsIgnoreCase("Pick up")) {
+                         JOptionPane.showMessageDialog(null, "Has seleccionado la categoría Pick up");
+                        } else if (category.equalsIgnoreCase("SUV")) {
+                            JOptionPane.showMessageDialog(null, "Has seleccionado la categoría SUV");
+                                } else {
+                                JOptionPane.showMessageDialog(null, "Categoría no válida. Por favor, seleccione una categoría válida.");
+                                    }
         
         Vehicle newVehicle = new Vehicle(licensePlate, brand, model, km, category);
         
@@ -99,7 +111,7 @@ public class CarsWorkshop {
         
         int consecutiveId = getConsecutiveId(apptMgmt.scheduledAppt);
         
-        Appointment newAppointment = new Appointment(consecutiveId, newDate, newCustomer.id, newVehicle.licensePlate, type);
+        Appointment newAppointment = new Appointment(consecutiveId, newDate, newCustomer.getId(), newVehicle.getLicensePlate(), type);
         
         apptMgmt.scheduleAppointment(newAppointment);
          
@@ -117,10 +129,10 @@ public class CarsWorkshop {
         
         for (int i = 0; i < SpareParts.length; i++) {
             System.out.println("***********************");
-            System.out.println("El id del elemento es: " + SpareParts[i].itemId);
-            System.out.println("El nombre del elemento es: " + SpareParts[i].itemName);
-            System.out.println("El Precio unitario del elemento es: " + SpareParts[i].unitPrice);
-            System.out.println("La cantidad del elemento es: " + SpareParts[i].quantity);
+            System.out.println("El id del elemento es: " + SpareParts[i].getItemId());
+            System.out.println("El nombre del elemento es: " + SpareParts[i].getItemName());
+            System.out.println("El Precio unitario del elemento es: " + SpareParts[i].getUnitPrice());
+            System.out.println("La cantidad del elemento es: " + SpareParts[i].getQuantity());
             System.out.println("***********************");
         }  
     }
@@ -141,7 +153,7 @@ public class CarsWorkshop {
         int consecutiveId = 000000;
         
         if(size > 0){
-            consecutiveId = existingAppts.getLast().consecutiveId + 1;
+            consecutiveId = existingAppts.getLast().getConsecutiveId()+ 1;
         }
         
         return consecutiveId;
