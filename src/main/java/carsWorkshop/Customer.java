@@ -1,11 +1,12 @@
 package carsWorkshop;
 
 public class Customer {
-    long id; //Se utiliza long debido a la cantidad de caracteres.
-    String name;
-    String lastName;
-    String address;
-    long phone; //Se utiliza long debido a la cantidad de caracteres.
+    private long id; //Se utiliza long debido a la cantidad de caracteres.
+    private String name;
+    private String lastName;
+    private String address;
+    private long phone; //Se utiliza long debido a la cantidad de caracteres.
+    
     public Customer(long id, String name, String lastName, String address, long phone){
         String newId = String.valueOf(id);
         if(newId.length() > 11){
@@ -38,5 +39,45 @@ public class Customer {
         }else{
             this.phone = phone;
         }  
+    }
+
+    public long getId() {
+        return id;
+    }
+    
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(long phone) {
+        this.phone = phone;
     }
 }

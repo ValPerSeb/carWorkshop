@@ -9,54 +9,64 @@ public class CarsWorkshop {
     public static void main(String[] args) {
         CustomerManagement customerMgmt = new CustomerManagement();
         
-        System.out.println("**Registro de citas disponibles**");
+        JOptionPane.showMessageDialog(null, "**Registro de citas disponibles**");
         ArrayList<LocalDateTime> availableDates = new ArrayList<>();
         int apptCount = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de citas disponibles: "));
+        if (apptCount > 5){
+            do {
+                JOptionPane.showMessageDialog(null, "El número maxímo de citas que se pueden crear es 5");
+                apptCount = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de citas disponibles: "));
+            } while (apptCount > 5);
+        }
         for(int i=1; i <= apptCount; i++){
-            System.out.println("Cita número " + i + ": ");
+            JOptionPane.showMessageDialog(null, "Cita número " + i + ": ");
             availableDates.add(requestDate());
         }
         
         AppointmentManagement apptMgmt = new AppointmentManagement(availableDates);
         
-        System.out.println("**Registro de Nuevo Cliente**");
-        long id = Long.parseLong(JOptionPane.showInputDialog("Ingrese el documento de identidad del cliente: "));
+        JOptionPane.showMessageDialog(null, "**Registro de Nuevo Cliente**");
+        int validationSize = 11;
+        String id = JOptionPane.showInputDialog("Ingrese el documento de identidad del cliente: ");
+        if(id.length() > validationSize || id.isEmpty()){
+            do{
+                JOptionPane.showMessageDialog(null, "El id no puede ser mayor a 11 dígitos o estar vacío");
+                id = JOptionPane.showInputDialog("Ingrese el documento de identidad del cliente: ");
+            }while(id.length() > validationSize || id.isEmpty());
+        }
+        long idNumber = Long.parseLong(id);
         String name = JOptionPane.showInputDialog("Ingrese el nombre del cliente: ");
+        if(name.isEmpty()){
+            do{
+                name = (JOptionPane.showInputDialog("El nombre no debe estar vacío, ingrese el nombre del cliente: "));
+            }while(name.isEmpty());
+        }
         String lastName = JOptionPane.showInputDialog("Ingrese el apellido del cliente: ");
+        if(lastName.isEmpty()){
+            do{
+                lastName = (JOptionPane.showInputDialog("El apellido no debe estar vacío, ingrese el apellido del cliente: "));
+            }while(lastName.isEmpty());
+        }
         String address = JOptionPane.showInputDialog("Ingrese la dirección del cliente: ");
-        long phone = Long.parseLong(JOptionPane.showInputDialog("Ingrese el teléfono del cliente: "));
+        if(address.isEmpty()){
+            do{
+                address = (JOptionPane.showInputDialog("La dirección no debe estar vacía, ingrese la dirección del cliente: "));
+            }while(address.isEmpty());
+        }
+        String phone = JOptionPane.showInputDialog("Ingrese el teléfono del cliente: ");
+        if(phone.length() > validationSize || phone.isEmpty()){
+            do{
+                JOptionPane.showMessageDialog(null, "El teléfono no puede ser mayor a 11 dígitos o estar vacío");
+                phone = JOptionPane.showInputDialog("Ingrese el teléfono del cliente: ");
+            }while(phone.length() > validationSize || phone.isEmpty());
+        }
+        long phoneNumber = Long.parseLong(phone);
         
-        Customer newCustomer = new Customer(id, name, lastName, address, phone);
-        //Inicio validaciones para evitar campos vacios o con error.
-        if(newCustomer.id == 0){
-            String vali="123456789012";
-            do{
-                System.out.println("El id no puede ser mayor a 11 dígitos");
-                newCustomer.id = Long.parseLong(JOptionPane.showInputDialog("Ingrese el documento de identidad del cliente: "));
-                vali=String.valueOf(newCustomer.id);
-            }while(vali.length()>11);
-        }
-        if(newCustomer.name == null){
-            newCustomer.name = JOptionPane.showInputDialog("Ingrese el nombre del cliente: ");
-        }
-        if(newCustomer.lastName == null){
-            newCustomer.lastName = JOptionPane.showInputDialog("Ingrese el apellido del cliente: ");
-        }
-        if(newCustomer.address == null){
-            newCustomer.address = JOptionPane.showInputDialog("Ingrese la dirección del cliente: ");
-        }
-        if(newCustomer.phone == 0){
-            String vali="123456789012";
-            do{
-                System.out.println("El id no puede ser mayor a 11 dígitos");
-                newCustomer.phone = Long.parseLong(JOptionPane.showInputDialog("Ingrese el documento de identidad del cliente: "));
-                vali=String.valueOf(newCustomer.phone);
-            }while(vali.length()>11);
-        }
-        //Fin validaciones para evitar campos vacios o con error.
+        Customer newCustomer = new Customer(idNumber, name, lastName, address, phoneNumber);
+       
         customerMgmt.RegisterCustomer(newCustomer);
         
-        System.out.println("**Registro de Nuevo Vehículo**");
+        JOptionPane.showMessageDialog(null, "**Registro de Nuevo Vehículo**");
         String licensePlate = JOptionPane.showInputDialog("Ingrese la placa del vehículo: ");
         if(licensePlate.length()>6){
             do{
@@ -68,7 +78,6 @@ public class CarsWorkshop {
                 licensePlate = JOptionPane.showInputDialog("No has puesto ninguna placa, ingrese la placa del vehículo: "); 
             }while(licensePlate.length()<=0);
         }
-        
         String brand = JOptionPane.showInputDialog("Ingrese la marca del vehículo: ");
         if (brand.length()<=0){
             do{
@@ -84,22 +93,54 @@ public class CarsWorkshop {
             }while(vali.length()>=0);
         }
         double km = Float.parseFloat(JOptionPane.showInputDialog("Ingrese el kilometraje del vehículo: "));
-        String category = JOptionPane.showInputDialog("Ingrese cual es la categoría del vehículo: \nSedan \nCamioneta \nPick up \nSUV");
-        if(category.length()<=0){
-            do{
-                category = JOptionPane.showInputDialog("Ingrese cual es la categoría del vehículo: \nSedan \nCamioneta \nPick up \nSUV");
-            }while(category.length()<=0);
+        String category = JOptionPane.showInputDialog("Ingrese la categoría del vehículo: \nSedan \nCamioneta \nPickUp \nSUV");
+        
+        if (category.length() <= 0) {
+            do {
+                category = JOptionPane.showInputDialog("Ingrese la categoría del vehículo: \nSedan \nCamioneta \nPickUp \nSUV");
+            } while (category.length() <= 0);
         }
-        
-        Vehicle newVehicle = new Vehicle(licensePlate, brand, model, km, category);
-        
-        System.out.println("**Registro de Nueva Cita**");
+        String vehicleLicensePlate = "";
+        if (category.equalsIgnoreCase("Sedan")) {
+            JOptionPane.showMessageDialog(null, "Has seleccionado la categoría Sedan");
+            int isAutomatic = Integer.parseInt(JOptionPane.showInputDialog("El vehículo es automático: \n1- Si \n2- No"));
+            boolean isAutomaticBoolean = false;
+            if (isAutomatic == 1) {
+                isAutomaticBoolean = true;
+            }
+            Sedan newVehicle = new Sedan(isAutomaticBoolean,licensePlate,brand,model,km,category);
+            vehicleLicensePlate = newVehicle.getLicensePlate();
+        } else if (category.equalsIgnoreCase("Camioneta")) {
+            JOptionPane.showMessageDialog(null, "Has seleccionado la categoría Camioneta");
+            int is4x4 = Integer.parseInt(JOptionPane.showInputDialog("El vehículo es 4x4: \n1- Si \n2- No"));
+            boolean is4x4Boolean = false;
+            if (is4x4 == 1) {
+                is4x4Boolean = true;
+            }
+            int burden = Integer.parseInt(JOptionPane.showInputDialog("Cual es la capacidad de carga: "));
+            Van newVehicle = new Van(is4x4Boolean,burden,licensePlate,brand,model,km,category);
+            vehicleLicensePlate = newVehicle.getLicensePlate();
+        } else if (category.equalsIgnoreCase("PickUp")) {
+            JOptionPane.showMessageDialog(null, "Has seleccionado la categoría PickUp");
+            int burden = Integer.parseInt(JOptionPane.showInputDialog("Cual es la capacidad de carga: "));
+            PickUp newVehicle = new PickUp(burden,licensePlate,brand,model,km,category);
+            vehicleLicensePlate = newVehicle.getLicensePlate();
+        } else if (category.equalsIgnoreCase("SUV")) {
+            JOptionPane.showMessageDialog(null, "Has seleccionado la categoría SUV");
+            int numberOfDoors = Integer.parseInt(JOptionPane.showInputDialog("Cuantas puertas tiene el vehículo: "));
+            Suv newVehicle = new Suv(numberOfDoors,licensePlate,brand,model,km,category);
+            vehicleLicensePlate = newVehicle.getLicensePlate();
+        } else {
+            JOptionPane.showMessageDialog(null, "Categoría no válida. Por favor, seleccione una categoría válida.");
+        }
+
+        JOptionPane.showMessageDialog(null, "**Registro de Nueva Cita**");
         LocalDateTime newDate = requestDate();
         String type = JOptionPane.showInputDialog("Ingrese cual es el tipo de la cita: \nreparación \nmantenimiento");
         
         int consecutiveId = getConsecutiveId(apptMgmt.scheduledAppt);
         
-        Appointment newAppointment = new Appointment(consecutiveId, newDate, newCustomer.id, newVehicle.licensePlate, type);
+        Appointment newAppointment = new Appointment(consecutiveId, newDate, newCustomer.getId(), vehicleLicensePlate, type);
         
         apptMgmt.scheduleAppointment(newAppointment);
          
@@ -117,10 +158,10 @@ public class CarsWorkshop {
         
         for (int i = 0; i < SpareParts.length; i++) {
             System.out.println("***********************");
-            System.out.println("El id del elemento es: " + SpareParts[i].itemId);
-            System.out.println("El nombre del elemento es: " + SpareParts[i].itemName);
-            System.out.println("El Precio unitario del elemento es: " + SpareParts[i].unitPrice);
-            System.out.println("La cantidad del elemento es: " + SpareParts[i].quantity);
+            System.out.println("El id del elemento es: " + SpareParts[i].getItemId());
+            System.out.println("El nombre del elemento es: " + SpareParts[i].getItemName());
+            System.out.println("El Precio unitario del elemento es: " + SpareParts[i].getUnitPrice());
+            System.out.println("La cantidad del elemento es: " + SpareParts[i].getQuantity());
             System.out.println("***********************");
         }  
     }
@@ -128,11 +169,40 @@ public class CarsWorkshop {
     public static LocalDateTime requestDate(){
         System.out.println("-Ingresará los datos de la fecha de la cita (yyyy-MM-dd HH:mm)-");
         int year = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el año (yyyy): "));
+        if (year != 2024 && year != 2025){
+            do {
+                JOptionPane.showMessageDialog(null, "El año ingresado no es valido");
+                year = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el año (yyyy): "));
+            } while (year != 2024 && year != 2025);
+        }
         int month = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el mes (MM): "));
+        if (month < 1 || month > 12){
+            do {
+                JOptionPane.showMessageDialog(null, "El mes ingresado no es valido");
+                month = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el mes (MM): "));
+            } while (month < 1 || month > 12);
+        }
         int day = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el día (dd): "));
+        if (day < 1 || day > 31){
+            do {
+                JOptionPane.showMessageDialog(null, "El día ingresado no es valido");
+                day = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el día (dd): "));
+            } while (day < 1 || day > 31);
+        }
         int hour = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la hora (HH): "));
+        if (hour < 00 || hour > 23){
+            do {
+                JOptionPane.showMessageDialog(null, "La hora ingresada no es valida");
+                hour = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la hora (HH): "));
+            } while (hour < 00 || hour > 23);
+        }
         int minutes = Integer.parseInt(JOptionPane.showInputDialog("Ingrese los minutos (mm): "));
-        
+        if (minutes < 00 || minutes > 59){
+            do {
+                JOptionPane.showMessageDialog(null, "Los minutos ingresados no son validos");
+                minutes = Integer.parseInt(JOptionPane.showInputDialog("Ingrese los minutos (mm): "));
+            } while (minutes < 00 || minutes > 59);
+        }
         return LocalDateTime.of(year, month, day, hour, minutes);
     }
     
@@ -141,7 +211,7 @@ public class CarsWorkshop {
         int consecutiveId = 000000;
         
         if(size > 0){
-            consecutiveId = existingAppts.getLast().consecutiveId + 1;
+            consecutiveId = existingAppts.getLast().getConsecutiveId()+ 1;
         }
         
         return consecutiveId;
