@@ -4,9 +4,33 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Repair {
-    String licensePlate;
-    String status;
-    ArrayList<Inventory> inventory = new ArrayList<>();
+    private String licensePlate;
+    private String status;
+    private ArrayList<Inventory> inventory = new ArrayList<>();
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public ArrayList<Inventory> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(ArrayList<Inventory> inventory) {
+        this.inventory = inventory;
+    }
     
     public Repair(String licensePlate, String status){
         this.licensePlate = licensePlate;

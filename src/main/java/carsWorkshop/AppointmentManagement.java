@@ -30,22 +30,22 @@ public class AppointmentManagement {
         int currentDateAppointments = 0;
         ArrayList<Appointment> customerAppointments = new ArrayList<>();
         
-        if(!availableAppt.contains(newAppointment.date)){
+        if(!availableAppt.contains(newAppointment.getDate())){
             System.out.println("Cita no disponible");
             return;
         }
         
         for(Appointment appt : this.scheduledAppt){
-            if(currentDate.equals(appt.date.toLocalDate())){
+            if(currentDate.equals(appt.getDate().toLocalDate())){
                 currentDateAppointments++;
             }
-            if(appt.customerId == newAppointment.customerId){
+            if(appt.getCustomerId() == newAppointment.getCustomerId()){
                 customerAppointments.add(appt);
             }
             
-            if(appt.formattedDate.equals(newAppointment.formattedDate)){
-                LocalTime scheduledTime = appt.date.toLocalTime().truncatedTo(ChronoUnit.HOURS);
-                LocalTime newTime = newAppointment.date.toLocalTime().truncatedTo(ChronoUnit.HOURS);
+            if(appt.getFormattedDate().equals(newAppointment.getFormattedDate())){
+                LocalTime scheduledTime = appt.getDate().toLocalTime().truncatedTo(ChronoUnit.HOURS);
+                LocalTime newTime = newAppointment.getDate().toLocalTime().truncatedTo(ChronoUnit.HOURS);
                 if(scheduledTime.equals(newTime)){
                     System.out.println("Fecha y horario ya está ocupado");
                     return;
@@ -62,10 +62,7 @@ public class AppointmentManagement {
             return;
         }
         
-       
         this.scheduledAppt.add(newAppointment);
         System.out.println("Cita agregada existosamente");
-        
     }
-    
 }

@@ -1,4 +1,5 @@
 package carsWorkshop;
+
 import java.util.ArrayList;
         
 public class CustomerManagement {
@@ -14,29 +15,30 @@ public class CustomerManagement {
     public void PrintActiveCustomers(){
         System.out.println("Los siguientes clientes se encuentran activos: ");
         for(Customer customer : this.activeCustomers){
-            System.out.println(" >Nombre: " + customer.name + " " + customer.lastName + "Documento: " + customer.id + "Telefono: " + customer.phone);
+            System.out.println(" >Nombre: " + customer.getName() + " " + customer.getLastName() + "Documento: " + customer.getId() + "Telefono: " + customer.getPhone());
         }
     }
     
     /*Métodos de inProgressCustomers*/
     public void RegisterInProgressCustomer(int customerId){
         for(Customer customer : this.activeCustomers){
-            if(customer.id == customerId){
+            if(customer.getId() == customerId){
                 this.inProgressCustomers.add(customer);
             }
         }
     }
+    
     public void PrintInProgressCustomers(){
         System.out.println("Los siguientes clientes se encuentran en reparación o mantenimiento: ");
         for(Customer customer : this.inProgressCustomers){
-            System.out.println(" >Nombre: " + customer.name + " " + customer.lastName + "Documento: " + customer.id + "Telefono: " + customer.phone);
+            System.out.println(" >Nombre: " + customer.getName() + " " + customer.getLastName() + "Documento: " + customer.getId() + "Telefono: " + customer.getPhone());
         }
     }
     
     /*Métodos de readyCustomers*/
     public void RegisterReadyCustomer(int customerId){
         for(Customer customer : this.activeCustomers){
-            if(customer.id == customerId){
+            if(customer.getId() == customerId){
                 this.readyCustomers.add(customer);
             }
         }
@@ -45,7 +47,7 @@ public class CustomerManagement {
     public void PrintReadyCustomers(){
         System.out.println("Los siguientes clientes se encuentran listos: ");
         for(Customer customer : this.readyCustomers){
-            System.out.println(" >Nombre: " + customer.name + " " + customer.lastName + "Documento: " + customer.id + "Telefono: " + customer.phone);
+            System.out.println(" >Nombre: " + customer.getName() + " " + customer.getLastName() + "Documento: " + customer.getId() + "Telefono: " + customer.getPhone());
         }
     }
 }
