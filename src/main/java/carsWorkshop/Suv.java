@@ -1,6 +1,5 @@
 package carsWorkshop;
 
-
 public class Suv extends Vehicle {
     private int numberOfDoors;
 
@@ -15,6 +14,5 @@ public class Suv extends Vehicle {
 
     public void setNumberOfDoors(int numberOfDoors) {
         this.numberOfDoors = numberOfDoors;
-    }
-    
+    } 
 }

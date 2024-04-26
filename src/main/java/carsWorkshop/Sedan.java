@@ -1,7 +1,6 @@
 
 package carsWorkshop;
 
-
 public class Sedan extends Vehicle{
     private boolean automatico;
 
@@ -17,5 +16,4 @@ public class Sedan extends Vehicle{
     public void setAutomatico(boolean automatico) {
         this.automatico = automatico;
     }
-    
 }

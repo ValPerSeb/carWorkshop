@@ -62,10 +62,7 @@ public class AppointmentManagement {
             return;
         }
         
-       
         this.scheduledAppt.add(newAppointment);
         System.out.println("Cita agregada existosamente");
-        
     }
-    
 }

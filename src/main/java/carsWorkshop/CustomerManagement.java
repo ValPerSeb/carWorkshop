@@ -1,4 +1,5 @@
 package carsWorkshop;
+
 import java.util.ArrayList;
         
 public class CustomerManagement {
@@ -26,6 +27,7 @@ public class CustomerManagement {
             }
         }
     }
+    
     public void PrintInProgressCustomers(){
         System.out.println("Los siguientes clientes se encuentran en reparación o mantenimiento: ");
         for(Customer customer : this.inProgressCustomers){
